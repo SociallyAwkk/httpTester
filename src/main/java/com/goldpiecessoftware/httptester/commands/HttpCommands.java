@@ -31,11 +31,17 @@ public class HttpCommands {
         return requests(url, requests, threads, HttpMethod.POST.name());
     }
 
+
+
     private String requests(String url, int requests, int threads, String httpMethod) {
         Instant start = Instant.now();
-        log.info("Making {} {} requests to {} with {} concurrent threads", requests,httpMethod, url, threads);
+        log.debug("Making {} {} request{} to {} with {} concurrent thread{}",
+                requests, httpMethod, (requests > 1 ? "s" : ""), url, threads, (threads > 1 ? "s" : ""));
 
-        ProgressBar progressBar = new ProgressBar(requests);
+        System.out.println("Making " + requests + " " + httpMethod + " request" + (requests > 1 ? "s" : "") +
+                " to " + url + " with " + threads + " concurrent thread" + (threads > 1 ? "s" : ""));
+
+         ProgressBar progressBar = new ProgressBar(requests);
 
         List<RequestResponseInfo> responses = HttpHandler.sendRequests(url, requests, httpMethod, threads, progressBar::update);
 
