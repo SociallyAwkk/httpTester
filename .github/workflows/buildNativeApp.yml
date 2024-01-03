@@ -1,9 +1,9 @@
 name: Build Native App
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
+#  push:
+#    branches:
+#      - master
 jobs:
   build:
     name: Build
@@ -16,18 +16,18 @@ jobs:
       with:
         java-version: 21
 
-#    - name: Cache Maven packages
-#      uses: actions/cache@v3
-#      with:
-#        path: ~/.m2
-#        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-#        restore-keys: ${{ runner.os }}-m2
+    - name: Cache Maven packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
 
     - name: Build
       run: mvn -B -Pnative native:compile
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: httpTester
         path: target/*.exe
