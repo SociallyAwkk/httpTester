@@ -11,4 +11,11 @@ class HttpCommandsTest {
         String result = httpCommands.get("https://www.google.com", 1,1);
         assertNotEquals("https://www.google.com", result);
     }
+
+    @Test
+    void post() {
+        HttpCommands httpCommands = new HttpCommands();
+        String result = httpCommands.post("https://www.google.com", 1,1);
+        assertNotEquals("https://www.google.com", result);
+    }
 }

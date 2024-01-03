@@ -6,9 +6,9 @@ import com.goldpiecessoftware.httptester.http.model.RequestResponseInfo;
 import com.goldpiecessoftware.httptester.http.model.ResponseParser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
+import org.springframework.shell.command.annotation.Command;
+import org.springframework.shell.command.annotation.Option;
 import org.springframework.shell.standard.ShellComponent;
-import org.springframework.shell.standard.ShellMethod;
-import org.springframework.shell.standard.ShellOption;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -16,18 +16,20 @@ import java.util.List;
 
 @Slf4j
 @ShellComponent
+@Command(group = "http", description = "Commands for making HTTP requests")
 public class HttpCommands {
 
-    @ShellMethod(key = "get", value = "Makes GET requests to the specified URL with the specified number of requests and concurrent threads", group = "HTTP Commands")
-    public String get(@ShellOption(value = {"--url", "-u"}, help = "The endpoint to be requested", defaultValue = "http://192.168.0.29:5050/health") String url,
-                      @ShellOption(value = {"--requests", "-r"},help = "The amount of requests to action",defaultValue = "1") int requests,
-                      @ShellOption(value = {"--threads", "-t"},help = "The amount of concurrent threads to use",defaultValue = "10") int threads) {
+    @Command(command = "get", description = "Makes GET requests to the specified URL with the specified number of requests and concurrent threads")
+    public String get(@Option(longNames = {"--url"}, shortNames = {'u'}, description = "The endpoint to be requested", defaultValue = "http://192.168.0.29:5050/health") String url,
+                      @Option(longNames = {"--requests"}, shortNames = {'r'}, description = "The amount of requests to action", defaultValue = "1") int requests,
+                      @Option(longNames = {"--threads"}, shortNames = {'t'}, description = "The amount of concurrent threads to use", defaultValue = "10") int threads) {
         return requests(url, requests, threads, HttpMethod.GET.name());
     }
-    @ShellMethod(key = "post", value = "Makes POST requests to the specified URL with the specified number of requests and concurrent threads", group = "HTTP Commands")
-    public String post(@ShellOption(value = {"--url", "-u"}, help = "The endpoint to be requested", defaultValue = "http://192.168.0.29:5050/health") String url,
-                      @ShellOption(value = {"--requests", "-r"},help = "The amount of requests to action",defaultValue = "1") int requests,
-                      @ShellOption(value = {"--threads", "-t"},help = "The amount of concurrent threads to use",defaultValue = "10") int threads) {
+
+    @Command(command = "post", description = "Makes POST requests to the specified URL with the specified number of requests and concurrent threads")
+    public String post(@Option(longNames = {"--url"}, shortNames = {'u'}, description = "The endpoint to be requested", defaultValue = "http://192.168.0.29:5050/health") String url,
+                      @Option(longNames = {"--requests"}, shortNames = {'r'}, description = "The amount of requests to action", defaultValue = "1") int requests,
+                      @Option(longNames = {"--threads"}, shortNames = {'t'}, description = "The amount of concurrent threads to use", defaultValue = "10") int threads) {
         return requests(url, requests, threads, HttpMethod.POST.name());
     }
 

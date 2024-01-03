@@ -40,13 +40,15 @@ Provide instructions on how to get your program up and running.
 
 List any prerequisites that users need to have installed before using your program.
 
-- Prerequisite 1
-- Prerequisite 2
-- ...
+For Self Build:
+- Java 21 or higher
+- Ideally GraalVM 21.3.0 or higher
 
 ### Installation
 
 Guide users through the installation process.
+
+Download the latest release from the GitHub Actions artifact.
 
 ```bash
 # Example installation steps or commands
