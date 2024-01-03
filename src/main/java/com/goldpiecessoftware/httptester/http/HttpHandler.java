@@ -30,17 +30,14 @@ public class HttpHandler {
                 .peek(future -> future.thenAccept(response -> progressConsumer.accept(1)))
                 .toList();
 
-
         CompletableFuture<Void> combinedFutures = CompletableFuture.allOf(responseFutures.toArray(new CompletableFuture[0]));
 
-        // Handle the combined CompletableFuture
         CompletableFuture<List<RequestResponseInfo>> allResponses = combinedFutures.thenApply(v ->
                 responseFutures.stream()
                         .map(CompletableFuture::join)
                         .collect(Collectors.toList())
         );
 
-        //((ExecutorService) httpClient.executor().get()).shutdown();
         return allResponses.join();
     }
 
@@ -49,6 +46,7 @@ public class HttpHandler {
             semaphore.acquire();
             return sendHttpRequest(endpoint, httpMethod);
         } catch (InterruptedException e) {
+            log.error(e.getMessage());
             throw new RuntimeException("Error acquiring semaphore permit", e);
         } finally {
             semaphore.release();
