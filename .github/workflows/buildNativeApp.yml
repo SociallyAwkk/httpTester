@@ -1,4 +1,4 @@
-name: Build Native App
+name: Build Native Apps
 on:
   workflow_dispatch:
 #  push:
@@ -36,4 +36,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: httpTester-${{ matrix.os }}
-        path: target/httpTester*
+        path: target/httpTester${{ matrix.os == 'windows-latest' && '.exe' || '' }}
