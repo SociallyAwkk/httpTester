@@ -11,11 +11,16 @@ A Small CLI HTTP Testing Tool written in Java 21 and Spring Shell.
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-    - [Usage](#usage)
-- [Configuration](#configuration)
-- [Examples](#examples)
-- [Contributing](#contributing)
-- [License](#license)
+
+[//]: # (    - [Usage]&#40;#usage&#41;)
+
+[//]: # (- [Configuration]&#40;#configuration&#41;)
+
+[//]: # (- [Examples]&#40;#examples&#41;)
+
+[//]: # (- [Contributing]&#40;#contributing&#41;)
+
+[//]: # (- [License]&#40;#license&#41;)
 - [Acknowledgments](#acknowledgments)
 
 ## Introduction
@@ -44,14 +49,10 @@ For Self Build:
 - Java 21 or higher
 - Ideally GraalVM 21.3.0 or higher
 
-### Installation
+For Executable:
+- None
 
-Guide users through the installation process.
+### Installation
 
 Download the latest release from the GitHub Actions artifact.
 
-```bash
-# Example installation steps or commands
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
-./install.sh
