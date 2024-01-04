@@ -36,4 +36,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: httpTester-${{ matrix.os }}-${{ matrix.version }}
-        path: target/httpTester
+        path: target/httpTester*
